@@ -1,43 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Calculadoras de apoio à regulação</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Régua — Regulação Precisa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icone-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/icone-64.png">
+    <link rel="apple-touch-icon" href="assets/icone-180.png">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div class="page-container">
-        <h1><span class="emoji">🧾</span> Calculadora de Quimioterapia <span class="emoji">🧾</span></h1>
-        <div class="container">
-            <p>Digite <strong>mês e ano de início do tratamento.</strong></p>
-            <p>Ex.: Data de início: 03/11/2022 :</p>
-            <p>Digite: 11/2022.</p>
-            <label for="dataInicio"></label>
-            <input type="text" id="dataInicio" placeholder="MM/AAAA"  maxlength="7">
-            <button id="calcularBtn">Calcular</button>
-            <p id="resultado"></p>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <img class="brand-mark" src="assets/logo.png" alt="" width="40" height="40">
+                <div>
+                    <span class="brand-name">Régua</span>
+                    <span class="brand-sub">Regulação Precisa</span>
+                </div>
+            </div>
+
+            <div class="clock" aria-live="off">
+                <p id="horaAtual"></p>
+                <p id="horasFaltantes"></p>
+            </div>
         </div>
-    </div>
+    </header>
+
+    <main class="main">
+        <section class="intro">
+            <h1>Calculadoras de apoio à regulação</h1>
+            <p>Ferramentas para agilizar a conferência de autorizações de quimioterapia e hemodiálise. Informe a data de início do tratamento e confira o resultado antes de registrar.</p>
+        </section>
+
+        <div class="grid">
+            <section class="card" aria-labelledby="titulo-quimio">
+                <div class="card-head">
+                    <span class="card-icon card-icon--quimio" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+                    </span>
+                    <div>
+                        <h2 id="titulo-quimio">Quimioterapia</h2>
+                        <p class="card-desc">Total de meses autorizados, do mês de início até o mês atual.</p>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="dataInicio">Mês e ano de início do tratamento</label>
+                    <div class="input-row">
+                        <input type="text" id="dataInicio" placeholder="MM/AAAA" maxlength="7" inputmode="numeric" autocomplete="off">
+                        <button id="calcularBtn" class="btn">Calcular</button>
+                    </div>
+                    <p class="hint">Ex.: início em 03/11/2022 → digite <strong>11/2022</strong>. A barra é inserida automaticamente.</p>
+                </div>
+
+                <p id="resultado" class="result" aria-live="polite"></p>
+            </section>
+
+            <section class="card" aria-labelledby="titulo-hemo">
+                <div class="card-head">
+                    <span class="card-icon card-icon--hemo" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5s-6 6.6-6 11a6 6 0 0 0 12 0c0-4.4-6-11-6-11z"/></svg>
+                    </span>
+                    <div>
+                        <h2 id="titulo-hemo">Hemodiálise</h2>
+                        <p class="card-desc">Máximo de sessões possíveis por mês nos três primeiros meses, considerando 3 sessões semanais (seg/qua/sex ou ter/qui/sáb).</p>
+                    </div>
+                </div>
+
+                <form id="dateForm" class="field">
+                    <label for="startDate">Data de início do tratamento</label>
+                    <div class="input-row">
+                        <input type="text" id="startDate" placeholder="DD/MM/AAAA" maxlength="10" inputmode="numeric" autocomplete="off">
+                        <button type="submit" class="btn">Verificar</button>
+                    </div>
+                    <p class="hint">Digite apenas os números; as barras são inseridas automaticamente.</p>
+                </form>
+
+                <div id="result" class="result" aria-live="polite"></div>
+            </section>
+        </div>
+
+        <p class="disclaimer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            Ferramenta de apoio. Os resultados não substituem a análise do profissional regulador nem as normas vigentes.
+        </p>
+    </main>
+
+    <footer class="footer">CECIR · Uso interno</footer>
 
     <script src="script.js"></script>
-
-
-
-    <div class="page-container">
-        <h1><span class="emoji">💉</span> # Calculadora de Hemodiálise # <span class="emoji">💉</span></h1>
-        <div class="container"> 
-        <form id="dateForm">
-            <label for="startDate">Data de Início:</label>
-            <input type="text" id="startDate" placeholder="DD/MM/AAAA" />
-            <button type="submit">Verificar</button>
-        </form>
-        <div id="result"></div>
-        
-         </div>
-    </div>
-    
-    <p id="horaAtual"></p>
-    <p id="horasFaltantes"></p>
-    
-    <script src="script.js"></script>
-
+</body>
 </html>

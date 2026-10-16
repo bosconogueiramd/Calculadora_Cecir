@@ -1,69 +1,338 @@
+:root {
+  --bg: #f3f6f9;
+  --surface: #ffffff;
+  --text: #0f1f2e;
+  --muted: #5b6b7b;
+  --border: #e1e7ee;
+  --primary: #0b6e8a;
+  --primary-hover: #095a71;
+  --primary-soft: #e3f2f6;
+  --accent: #b3402f;
+  --accent-soft: #fbeae7;
+  --topbar: #0b3a4f;
+  --topbar-text: #e8f3f7;
+  --topbar-muted: #9fc3d1;
+  --focus: rgba(11, 110, 138, 0.25);
+  --shadow: 0 1px 2px rgba(15, 31, 46, 0.06), 0 8px 24px rgba(15, 31, 46, 0.06);
+  --radius: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1820;
+    --surface: #14232e;
+    --text: #e6eef3;
+    --muted: #93a6b4;
+    --border: #233846;
+    --primary: #3fb0cf;
+    --primary-hover: #66c3dc;
+    --primary-soft: #16364a;
+    --accent: #f08a78;
+    --accent-soft: #3a2220;
+    --topbar: #08131a;
+    --topbar-text: #e6eef3;
+    --topbar-muted: #7f9cab;
+    --focus: rgba(63, 176, 207, 0.3);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
   margin: 0;
-  padding: 20px;
-}
-
-.page-container {
-  display:flex;
+  min-height: 100vh;
+  display: flex;
   flex-direction: column;
-  align-items:center;
-  justify-content: center;
-  min-height: 40vh;
-  background-color: #f0f0f0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
 }
 
-.container {
-  max-width: 400px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  
+/* Barra superior */
+.topbar {
+  background-color: var(--topbar);
+  color: var(--topbar-text);
 }
 
-h1 {
-  text-align:left;
-  color: #333;
+.topbar-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-  
-form {
-  text-align: center;
-  margin-top: 20px;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  object-fit: contain;
+}
+
+.brand-name {
+  display: block;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 15px;
+}
+
+.brand-sub {
+  display: block;
+  font-size: 12.5px;
+  color: var(--topbar-muted);
+}
+
+.clock {
+  text-align: right;
+}
+
+#horaAtual {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+#horasFaltantes {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--topbar-muted);
+}
+
+/* Conteúdo */
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px 20px 24px;
+}
+
+.intro {
+  margin-bottom: 24px;
+}
+
+.intro h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.intro p {
+  margin: 0;
+  max-width: 640px;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.card-head {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.card-head h2 {
+  margin: 0 0 2px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card-desc {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.card-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+}
+
+.card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.card-icon--quimio {
+  background-color: var(--primary-soft);
+  color: var(--primary);
+}
+
+.card-icon--hemo {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Formulários */
+.field {
+  margin: 0;
 }
 
 label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
 }
 
 input {
-  width: 150px;
-  padding: 5px;
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  padding: 0 14px;
+  font: inherit;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
 }
 
-button {
-  padding: 5px 10px;
+input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
 }
 
-#result {
-  margin-top: 20px;
-  text-align: left;
-  font-weight: bold;
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: var(--surface);
+  box-shadow: 0 0 0 4px var(--focus);
 }
 
-#horaAtual {
-  margin-top: 20px;
+.btn {
+  height: 44px;
+  padding: 0 20px;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.05s;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn {
+    color: #06202b;
+  }
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus);
+}
+
+.hint {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* Resultados */
+.result {
+  margin: 20px 0 0;
+  padding: 14px 16px;
+  font-weight: 500;
+  background-color: var(--primary-soft);
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+}
+
+.result:empty {
+  display: none;
+}
+
+/* Rodapé */
+.disclaimer {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 28px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.disclaimer svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+}
+
+.footer {
+  padding: 16px 20px 24px;
   text-align: center;
-  font-weight:normal
-  
+  font-size: 12px;
+  color: var(--muted);
 }
 
-#horasFaltantes {
-  margin-top: 20px;
-  text-align: center;
-  font-weight:normal
-  
+@media (max-width: 560px) {
+  .clock {
+    text-align: left;
+  }
+
+  .intro h1 {
+    font-size: 22px;
+  }
+
+  .card {
+    padding: 20px;
+  }
 }
